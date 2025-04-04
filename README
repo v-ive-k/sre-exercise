@@ -1,0 +1,57 @@
+SRE Availability Checker
+
+This script monitors the availability of HTTP endpoints defined in a YAML configuration file. It periodically checks each endpoint and reports availability.
+
+Requirements
+
+- Python 3.12+
+- [`pipx`](https://github.com/pypa/pipx) 
+
+Setup Instructions (using pipx)
+
+1. Ensure `pipx` is installed
+
+If you haven’t already:
+
+```bash
+sudo apt install pipx
+pipx ensurepath
+```
+
+2. Install dependencies using "pipx run"
+
+```bash
+pipx run pip install requests pyyaml
+```
+
+Usage
+
+Make sure both the Python script and the YAML config file are in your working directory.
+
+Run the script:
+
+```bash
+python main.py config.yaml
+```
+
+This will:
+- Parse endpoints from the YAML config
+- Send HTTP requests every 15 seconds
+- Evaluate availability (2xx response within 500ms)
+- Print availability reports per domain
+
+
+CHABGES AND ISSUES IDENTIFIED AND ALSO PROVIDED A REASON FOR THE CHANGE.
+
+1 . ENTIRE FILE STRUCTURE WAS CHANGED 
+
+    - The originally given YAML file didn't have a list indicaters at the start of each endpoint definition , which makes it an invalid YAML file. without these a parsar ( like we using pyyaml) would fail with a syntax error like a scannererro.
+
+2 . REORDERED FIELDS FOR CONSISTENCY.
+
+   - The original YAML file don't follow the order of name, url, method, headers, body in every endpoint.
+
+3 . FIXED URL LINE BREAKS
+
+   - Theer was URL splits across the lines in the original yaml file and merged split url's to avoid the invalid url error.
+
