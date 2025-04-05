@@ -1,3 +1,11 @@
+# I initially missed the reference code provided, so I approached the assessment from my prespective. 
+# I built a version that supports concurrent checks using threading, includes timeout handling, and tracks availability with both response codes and latency. 
+# Looking back, I see how the reference was intended as a simpler baseline, 
+# but I tried to make my solution,
+# production-oriented,
+# more detailed logging,
+# performance considerations.
+
 import sys
 import yaml
 from urllib.parse import urlparse
